@@ -44,6 +44,11 @@ class BlockquoteSyntax extends BlockSyntax {
           // of this line.
           if (markerStart < currentLine.content.length - 1) {
             final nextChar = currentLine.content.codeUnitAt(markerStart + 1);
+            if(nextChar='!'){
+              parser.advance();
+              _lazyContinuation = false;
+              continue;
+            }
             hasSpace = nextChar == $tab || nextChar == $space;
           }
           markerEnd = markerStart + (hasSpace ? 2 : 1);
